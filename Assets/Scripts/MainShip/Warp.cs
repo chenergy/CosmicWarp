@@ -13,6 +13,7 @@ public class Warp : MonoBehaviour {
 	public AudioClip preWarp;
 	public AudioClip postWarp;
 	public AudioClip endWarp;
+	public HealthLivesFuel hlf;
 	
 	[HideInInspector]
 	public bool isWarping = false;
@@ -27,7 +28,7 @@ public class Warp : MonoBehaviour {
 	private bool returnToNormalCreated = true;
 	
 	void Update () {
-		HealthLivesFuel hlf = GameObject.Find("Health").GetComponent<HealthLivesFuel>();
+		//HealthLivesFuel hlf = GameObject.Find("Health").GetComponent<HealthLivesFuel>();
 		
 		if (hlf.currentFuel > 0.0f){
 			if (Input.GetKey(KeyCode.Tab) || Input.GetKey(KeyCode.Joystick1Button1)){
@@ -56,10 +57,15 @@ public class Warp : MonoBehaviour {
 					}
 				}
 				else{
-					GameObject.Find("Health").GetComponent<HealthLivesFuel>().currentFuel -= 1.0f;
+					//GameObject.Find("Health").GetComponent<HealthLivesFuel>().currentFuel -= 1.0f;
+					//HealthLivesFuel hlf = GameObject.FindObjectOfType<HealthLivesFuel> ().addFuel (-1.0f);
+					this.hlf.addFuel (-1.0f);
 				
-					if (GameObject.Find("Health").GetComponent<HealthLivesFuel>().currentFuel < 0.0f){
+					/*if (GameObject.Find("Health").GetComponent<HealthLivesFuel>().currentFuel < 0.0f){
 						GameObject.Find("Health").GetComponent<HealthLivesFuel>().currentFuel = 0.0f;
+					}*/
+					if (this.hlf.currentFuel < 0.0f) {
+						this.hlf.currentFuel = 0.0f;
 					}
 					
 					if (Mathf.Abs(60 - Camera.main.fieldOfView) < 0.1f){

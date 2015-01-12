@@ -19,7 +19,8 @@ public class EnemyDropsFuel : EnemyDrops {
 	void OnTriggerEnter( Collider other ){
 		if (other.tag == "Player"){					
 			HeroShip script = other.GetComponent<HeroShip>();
-			HealthLivesFuel hlf = GameObject.Find("Health").GetComponent<HealthLivesFuel>();
+			//HealthLivesFuel hlf = GameObject.Find("Health").GetComponent<HealthLivesFuel>();
+			HealthLivesFuel hlf = GameObject.FindObjectOfType <HealthLivesFuel> ();
 			
 			if (!script.isInvulnerable){
 				AudioSource.PlayClipAtPoint(this.sound, this.transform.position);
